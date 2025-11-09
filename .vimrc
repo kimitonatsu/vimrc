@@ -27,11 +27,22 @@ Plug 'psliwka/vim-smoothie'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-obsession'
 Plug 'liuchengxu/vim-which-key'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
+let g:airline_powerline_fonts = 1
+let g:airline_theme='molokai'
 " 3. Set colorscheme
 colorscheme molokai
+" fzf navigation
+nnoremap <leader>f :Files<CR>        " Search files
+nnoremap <leader>g :Rg<CR>           " Grep in project
 let g:ale_linters = {'cpp': ['clang', 'gcc']}
 let g:ale_fixers  = {'cpp': ['clang-format']}
+let g:ale_c_clang_executable = '/usr/lib64/ccache/clang'
+let g:ale_cpp_clang_executable = '/usr/lib64/ccache/clang++'
+let g:ale_c_gcc_executable = '/usr/lib64/ccache/gcc'
+let g:ale_cpp_gcc_executable = '/usr/lib64/ccache/g++'
 
 let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_on_insert_leave = 1
@@ -40,12 +51,10 @@ let g:ale_lint_delay = 5000
 
 " Auto-fix on save if desired
 let g:ale_fix_on_save = 1
-" Hover documentation
-nnoremap K :call CocActionAsync('doHover')<CR>
-" Go to definition
-nnoremap gd <Plug>(coc-definition)
-" Find references
-nnoremap gr <Plug>(coc-references)
+nnoremap <silent> <leader>d <Plug>(coc-definition)
+nnoremap <silent> <leader>r <Plug>(coc-references)
+nnoremap <silent> <leader>k :call CocActionAsync('doHover')<CR>
+nnoremap <silent> <leader>b <C-o>
 " 4. Override popup menu colors for autocomplete / CoC
 hi Pmenu       guibg=#252526 guifg=#d4d4d4
 hi PmenuSel    guibg=#007acc guifg=#ffffff
