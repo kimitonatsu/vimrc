@@ -39,10 +39,17 @@ nnoremap <leader>f :Files<CR>        " Search files
 nnoremap <leader>g :Rg<CR>           " Grep in project
 let g:ale_linters = {'cpp': ['clang', 'gcc']}
 let g:ale_fixers  = {'cpp': ['clang-format']}
-let g:ale_c_clang_executable = '/usr/lib64/ccache/clang'
-let g:ale_cpp_clang_executable = '/usr/lib64/ccache/clang++'
-let g:ale_c_gcc_executable = '/usr/lib64/ccache/gcc'
-let g:ale_cpp_gcc_executable = '/usr/lib64/ccache/g++'
+if has("macunix")
+    let g:ale_c_clang_executable = '/usr/bin/clang'
+    let g:ale_cpp_clang_executable = '/usr/bin/clang++'
+    let g:ale_c_gcc_executable = '/usr/bin/gcc'
+    let g:ale_cpp_gcc_executable = '/usr/bin/g++'
+else
+    let g:ale_c_clang_executable = '/usr/lib64/ccache/clang'
+    let g:ale_cpp_clang_executable = '/usr/lib64/ccache/clang++'
+    let g:ale_c_gcc_executable = '/usr/lib64/ccache/gcc'
+    let g:ale_cpp_gcc_executable = '/usr/lib64/ccache/g++'
+endif
 
 let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_on_insert_leave = 1
