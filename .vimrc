@@ -4,6 +4,8 @@ set tabstop=2
 set softtabstop=2
 set mouse=a
 set wrap
+set linebreak
+
 syntax on
 filetype plugin on
 set termguicolors
@@ -22,6 +24,9 @@ Plug 'dense-analysis/ale'      " linting
 Plug 'sheerun/vim-polyglot'
 Plug 'tomasr/molokai' 
 Plug 'psliwka/vim-smoothie'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-obsession'
+Plug 'liuchengxu/vim-which-key'
 call plug#end()
 " 3. Set colorscheme
 colorscheme molokai
@@ -69,3 +74,23 @@ endif
 " keeps normal block in place after reverting from insert mode
 set nostartofline
 autocmd InsertLeave * normal! l
+tnoremap <Esc> <C-\><C-n>
+nnoremap <Leader>tn :tabnext<CR>
+nnoremap <Leader>tp :tabprevious<CR>
+
+" Initialize which-key
+let g:which_key_map = {}
+nnoremap <Space> :WhichKey '<Space>'<CR>
+
+" Toggle between different numbering modes
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+    set number
+  endif
+endfunction
+
+nnoremap <leader>m :call NumberToggle()<CR>
