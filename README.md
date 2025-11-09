@@ -1,2 +1,1 @@
-# eulerprblms
-# eulerprblms
+This is my personal Vim setup. I found NeoVim to be a large hassle and VSCode didn't feel fun to use, so this is what I ended up with. Yes, both has better GUI than ancient Vim, but as long as my text editor's keybinds feel cohesive, plugins are backcompatible, and remote editing is zippy, I'm fine with taking the loss. 
